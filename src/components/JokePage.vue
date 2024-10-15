@@ -7,31 +7,27 @@
   <div>
     <h2>{{ this.joke }}</h2>
   </div>
-  
 </template>
 
 <script>
-import JokeService from '../sevices/JokeService';
-
+import JokeService from "../services/JokeService";
 
 export default {
   data() {
     return {
-      joke: '',
-    }
+      joke: "",
+    };
   },
- 
+
   methods: {
     getRandomJoke() {
-      JokeService
-      .getJoke()
-      .then((response) => {
+      JokeService.getJoke().then((response) => {
         console.log(response);
         this.joke = response.data.joke;
         console.log(this.joke);
-      })
-    }
-  }
+      });
+    },
+  },
 };
 </script>
 
