@@ -9,6 +9,6 @@ const http = axios.create({
 
 export default {
     getJoke() {
-        return http.get();
+       return http.get();
     }
 }
