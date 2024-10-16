@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>REAL Joke-a-Quote-a-Day</h1>
+    <h1>Joke-a-Quote-a-Day</h1>
     <div class="buttons">
       <button class="button-link" v-on:click="$router.push({ name: 'joke' })">
         Get a Joke
@@ -8,7 +8,7 @@
       <button class="button-link" v-on:click="$router.push({ name: 'fact' })">
         Get a Fact
       </button>
-      <button class="button-link" v-on:click="$router.push({ name: 'fact' })">
+      <button class="button-link" v-on:click="$router.push({ name: 'quote' })">
         Get a Quote
       </button>
     </div>

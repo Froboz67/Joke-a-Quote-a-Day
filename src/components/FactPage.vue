@@ -2,11 +2,15 @@
   <div>
     <h1>This is the Fact Page</h1>
     <div class="buttons">
-      <button v-on:click="getRandomFact">Random Fact</button> |
-      <button v-on:click="$router.push({ name: 'home' })">Home</button>
+      <button class="button-link" v-on:click="getRandomFact">
+        Random Fact
+      </button>
+      <button class="button-link" v-on:click="$router.push({ name: 'home' })">
+        Home
+      </button>
     </div>
   </div>
-  <div class="fact-box">
+  <div v-if="showFact" class="fact-box">
     {{ this.fact }}
   </div>
 </template>
@@ -18,15 +22,19 @@ export default {
   data() {
     return {
       fact: "",
+      showFact: false,
     };
   },
   methods: {
     getRandomFact() {
-      FactService.getFact().then((response) => {
-        console.log(response);
-        this.fact = response.data.text;
-        console.log(this.fact);
-      });
+      FactService.getFact()
+        .then((response) => {
+          this.fact = response.data.text;
+          this.showFact = true;
+        })
+        .catch((error) => {
+          console.log("error getting fact", error);
+        });
     },
   },
 };
@@ -44,7 +52,19 @@ button {
 }
 .buttons {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+.button-link {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: lightseagreen;
+  color: white;
 }
 .fact-box {
   display: grid;
@@ -54,5 +74,18 @@ button {
   padding: 5px;
   align-items: center;
   text-align: center;
+  background-color: gainsboro;
+  font-size: 20px;
+}
+body {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 550px) {
+  .app-container {
+    width: 100%;
+    padding: 5px;
+  }
 }
 </style>
